@@ -1,4 +1,3 @@
-import Queue from '../libs/Queue';
 import api from '../api';
 
 interface IRequest {
@@ -7,11 +6,23 @@ interface IRequest {
     search?: string;
 }
 
+interface IInstallments {
+    Value: number;
+    NumberOfInstallments: number;
+}
+
+interface IItemsData {
+    commertialOffer: {
+        Installments: IInstallments[];
+    }
+}
+
 interface ISearchItemData {
     productId: string;
     productName: string;
     categories: string[];
     link: string;
+    items: IItemsData[];
 }
 
 interface ISearchResponse {
