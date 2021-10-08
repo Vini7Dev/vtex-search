@@ -13,7 +13,6 @@ interface ISearchMailData {
 }
 
 // Job para envio de email ao realizar o "search"
-
 export default {
     key: 'SearchMail',
     async handle({

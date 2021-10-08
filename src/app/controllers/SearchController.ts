@@ -7,13 +7,20 @@ class SearchController {
         // Recuperando o parâmetro de pesquisa
         const { search } = request.params;
 
+        // Recuperando o nome e o email do destinatário do corpo da requisição
+        const { name, email } = request.body;
+
         // Instanciando e executando o serviço para realizar o 'search'
         const searchService = new SearchService(); 
 
-        const searchResponse = await searchService.execute(search);
+        await searchService.execute({
+            name,
+            email,
+            search,
+        });
 
-        // Retornando a responta
-        return response.json('Temp');
+        // Retornando uma responta
+        return response.json({ message: 'Busca realizada com sucesso!' });
     }
 }
 
