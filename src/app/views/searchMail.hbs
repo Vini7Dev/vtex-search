@@ -1,29 +1,71 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<body>
-    <div class="container">
-        <span>
-            Sua busca não encontrou nenhum resultado.
-        </span>
-        <span>
-            Produtos encontrados: {{totalOfProducts}} Resultado da Pesquisa por: <strong>{{search}}</strong> em {{time}} ms
-        </span>
+<style>
 
-        <br/>
-        
+</style>
+
+<div class="container">
+    {{#if totalOfProducts > 0}}
+    <span>
+        Produtos encontrados: {{totalOfProducts}} Resultado da Pesquisa por: <strong>{{search}}</strong> em {{time}} ms
+    </span>
+    {{else}}
+    <span>
+        Sua busca não encontrou nenhum resultado.
+    </span>
+    {{/if}}
+
+    <div>
+        <span>Primeiro</span>
+        <span>Anterior</span>
+        <span>{{pageNumber}}</span>
+        <span>Próximo</span>
+        <span>Último</span>
+    </div>
+
+    <br/>
+    
+    <div>
+        {{#each products}}
         <div>
-            <p>Resultado...</p>
+            <span>{{this.productId}}</span>
+
+            {{#each this.category}}
+                <span>{{this}}</span>
+            {{/each}}
+
+            <h3>{{this.title}}</h3>
+
+            <div>
+                <span>{{oldPrice}}</span>
+                <span>{{currentPrice}}</span>
+                <span>ou {{installments}}x de {{installmentValue}}</span>
+                <span>Comprar</span>
+            </div>
         </div>
+        {{/each}}
+    </div>
 
-        <br/>
-        
-        <span>
-            Produtos encontrados: {{totalOfProducts}} Resultado da Pesquisa por: <strong>{{search}}</strong> em {{time}} ms
-        </span>
+    <br/>
 
-        <span>Caso não tenha sido você quem solicitou este email, por favor desconsidere.</span>
+    <div>
+        <span>Primeiro</span>
+        <span>Anterior</span>
+        <span>{{pageNumber}}</span>
+        <span>Próximo</span>
+        <span>Último</span>
+    </div>
+    
+    {{#if totalOfProducts > 0}}
+    <span>
+        Produtos encontrados: {{totalOfProducts}} Resultado da Pesquisa por: <strong>{{search}}</strong> em {{time}} ms
+    </span>
+    {{else}}
+    <span>
+        Sua busca não encontrou nenhum resultado.
+    </span>
+    {{/if}}
 
-        <span>Obrigado!</span>
+    <span>Caso não tenha sido você quem solicitou este email, por favor desconsidere.</span>
+
+    <span>Obrigado!</span>
     <h3>Equipe | Codeby</h3>
-</body>
-</html>
+</div>

@@ -42,7 +42,8 @@ class SearchService {
         // Selecionando os dados da resposta que vão ser utilizados
         const productsFinded = searchResult.data.map((product) => product);
 
-        console.log(productsFinded);
+        // Gerando o template do email com base na resposta da requisição
+        //
 
         /*
         // Adicionando os dados na fila de envio de email
