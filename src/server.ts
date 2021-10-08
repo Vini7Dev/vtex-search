@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 
-import mainRoutes from './routes';
+import mainRoutes from './app/routes';
 
 // Criando o servidor
 const app = express();
