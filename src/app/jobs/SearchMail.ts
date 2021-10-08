@@ -8,20 +8,22 @@ interface ISendMailProps {
     html: string;
 }
 
+interface ISearchMailData {
+    data: ISendMailProps;
+}
+
 // Job para envio de email ao realizar o "search"
 
 export default {
     key: 'SearchMail',
     async handle({
-        name,
-        email,
-        html,
-    }: ISendMailProps) {
+        data
+    }: ISearchMailData) {
         await NodeMailer.sendMail({
             from: 'Codeby <contato@codeby.com.br>',
-            to: `${name} <${email}>`,
+            to: `${data.name} <${data.email}>`,
             subject: 'Produtos disponíveis na loja',
-            html,
+            html: data.html,
         });
     }
 }
