@@ -8,6 +8,7 @@ const searchRoutes = Router();
 // Instanciando o controlador das requisições
 const searchController = new SearchController();
 
-searchRoutes.get('/:search', searchController.get);
+// Listagem dos produtos
+searchRoutes.get('/', searchController.get);
 
 export default searchRoutes;
