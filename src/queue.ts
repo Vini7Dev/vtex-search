@@ -1,7 +1,6 @@
 import 'dotenv/config';
 
-import Queue from './app/jobs/Queue';
-import SearchMail from './app/jobs/SearchMail';
+import Queue from './app/libs/Queue';
 
-// Configurando o processamento do envio de email
-Queue.process(SearchMail.handle);
+// Executando o processamento das filas
+Queue.process();
