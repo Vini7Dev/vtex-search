@@ -1,14 +1,15 @@
-import NodeMailerProvider from "../providers/MailProvider/NodeMailerProvider";
+import Queue from '../jobs/Queue';
+import NodeMailer from '../libs/NodeMailer';
 
 // Serviço para executar o search
 class SearchService {
     public async execute(search: string): Promise<void> {
-        // Instanciando o provedor de emails e enviando o email
-        const nodeMailerProvider = new NodeMailerProvider();
+        // Executar a busca aqui
 
-        await nodeMailerProvider.sendMail({
-            name: 'Example',
+        await Queue.add({
+            name: 'Example Name',
             email: 'example@mail.com',
+            html: 'Hello World!',
         });
     }
 }
