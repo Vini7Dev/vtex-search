@@ -39,10 +39,10 @@ Api de search da VTEX - Teste para vaga Back End NodeJS
     * search?: string
       * Texto de busca por produtos - Opcional (Caso não informado, retorna todos os produtos)
 
-<img src="assets/request_example.png" />
+<img src="assets/request_example.PNG" />
 <br/>
 <br/>
 
 * *http://localhost:3333/admin/queues* - Rota do painel de monitoramento das filas de processamento dos e-mails | **Acessar esta rota pelo navegador!** |
 
-<img src="assets/queues_board.png" />
+<img src="assets/queues_board.PNG" />
