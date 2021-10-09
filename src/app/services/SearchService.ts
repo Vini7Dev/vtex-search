@@ -30,8 +30,6 @@ class SearchService {
         // Selecionando os dados da resposta que vão ser utilizados
         const productsFinded = searchResult.data.map((product) => product);
 
-        console.log(productsFinded.map(test => test.productName));
-
         // Gerando a lista dos produtos com os dados compactados
         const compactedProductsData = productsFinded.map(product => getProductData(product));
 
@@ -63,7 +61,7 @@ class SearchService {
         await Queue.add('SearchMail', {
             name,
             email,
-            html: 'Hello World!',
+            html: parsedMailTemplate,
         });
         */
     }
