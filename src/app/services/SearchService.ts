@@ -14,7 +14,7 @@ class SearchService {
     public async execute({
         name,
         email,
-        search,
+        search = '',
     }: IRequest): Promise<void> {
         // Recuperando a hora do início da requisição
         const startRequestTime = (new Date()).getTime();
