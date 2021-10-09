@@ -1,9 +1,10 @@
 import path from 'path';
 
-import ISearchResponseDTO from '../dtos/ISearchResponseDTO';
 import api from '../api';
+import Queue from '../libs/Queue';
 import Handlebars from '../libs/Handlebars';
 import getProductData from '../utils/getProductData';
+import ISearchResponseDTO from '../dtos/ISearchResponseDTO';
 
 interface IRequest {
     name: string;
@@ -22,7 +23,7 @@ class SearchService {
         const startRequestTime = (new Date()).getTime();
 
         // Realizando a consulta na API da VTEX
-        const searchResult = await api.get(search) as ISearchResponseDTO;
+        const searchResult = await api.get(`/search?_from=1&_to=50&ft=${search}`) as ISearchResponseDTO;
         
         // Recuperando a hora do fim da requisição
         const endRequestTime = (new Date()).getTime();
@@ -53,17 +54,13 @@ class SearchService {
             file: templateMail,
             variables,
         });
-
-        console.log(parsedMailTemplate);
-
-        /*
-        // Adicionando os dados na fila de envio de email
+        
+        // Adicionando os dados na fila de envio do email
         await Queue.add('SearchMail', {
             name,
             email,
             html: parsedMailTemplate,
         });
-        */
     }
 }
 

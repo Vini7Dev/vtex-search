@@ -1,10 +1,11 @@
 <style>
-    span, strong, h3 {
+    span, strong {
         font-family: Arial, Helvetica, sans-serif;
     }
 
-    h3 {
-        font-size: 45px;
+    .codeby-icon {
+        display: block;
+        margin-bottom: 25px;
     }
 
     .pagination-area {
@@ -47,70 +48,73 @@
 </style>
 
 <div class="container">
-    <h3>Codeby</h3>
-
-    {{#if findedProducts}}
-    <span>Produtos encontrados: <strong>{{totalOfProducts}}</strong> Resultado(s)</span>
-
-    {{#if search}}
-    <span>da Pesquisa por: <strong>{{search}}</strong></span>
-    {{/if}}
-
-    <span> em {{time}} ms</span>
-
-    <div class="pagination-area">
-        <span>Primeiro</span>
-        <span>Anterior</span>
-        <span>{{pageNumber}}</span>
-        <span>Próximo</span>
-        <span>Último</span>
-    </div>
-
-    <br/>
+    <img src="//cdn.shopify.com/s/files/1/0088/3579/3001/files/logo_codeby_registered_2_180x.png?v=1596589126 1x, //cdn.shopify.com/s/files/1/0088/3579/3001/files/logo_codeby_registered_2_360x.png?v=1596589126 2x" alt="Codeby" class="codeby-icon" />
     
-    <div class="products-area">
-        {{#each products}}
-        <div class="product">
-            <span>{{productId}}</span>
+    {{#if findedProducts}}
+        {{#if search}}
+            <span>
+                Produtos encontrados: <strong>{{totalOfProducts}}</strong>
+                Resultado(s) da Pesquisa por: <strong>{{search}}</strong>.
+            </span>
+        {{else}}
+            <span>Total de <strong>{{totalOfProducts}}</strong> produtos disponíveis na loja.</span>
+        {{/if}}
 
-            {{#each categories}}
-                <span>{{this}}</span>
-            {{/each}}
+        <span>Tempo de resposta: {{time}} ms</span>
 
-            <br/>
-
-            <a href="{{link}}" class="product-title"><strong>{{productName}}</strong></a>
-
-            <div>
-                {{#if haveDiscount}}
-                <span class="old-price">{{listPrice}}</span>
-                {{/if}}
-
-                <span>{{price}}</span>
-
-                {{#if haveInstallments}}
-                <span>ou {{numberOfInstallments}}x de {{installmentsValue}}</span>
-                {{/if}}
-
-                <span>Comprar</span>
-            </div>
+        <div class="pagination-area">
+            <span>Primeiro</span>
+            <span>Anterior</span>
+            <span>{{pageNumber}}</span>
+            <span>Próximo</span>
+            <span>Último</span>
         </div>
-        {{/each}}
-    </div>
 
-    <br/>
+        <br/>
+        
+        <div class="products-area">
+            {{#each products}}
+            <div class="product">
+                <span>{{productId}}</span>
 
-    <div class="pagination-area">
-        <span>Primeiro</span>
-        <span>Anterior</span>
-        <span>{{pageNumber}}</span>
-        <span>Próximo</span>
-        <span>Último</span>
-    </div>
+                {{#each categories}}
+                    <span>{{this}}</span>
+                {{/each}}
+
+                <br/>
+
+                <a href="{{link}}" class="product-title"><strong>{{productName}}</strong></a>
+
+                <div>
+                    {{#if haveDiscount}}
+                    <span class="old-price">{{listPrice}}</span>
+                    {{/if}}
+
+                    <span>{{price}}</span>
+
+                    {{#if haveInstallments}}
+                    <span>ou {{numberOfInstallments}}x de {{installmentsValue}}</span>
+                    {{/if}}
+
+                    <span>Comprar</span>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <br/>
+
+        <div class="pagination-area">
+            <span>Primeiro</span>
+            <span>Anterior</span>
+            <span>{{pageNumber}}</span>
+            <span>Próximo</span>
+            <span>Último</span>
+        </div>
     {{else}}
-    <span>
-        Sua busca não encontrou nenhum resultado.
-    </span>
+        <span>
+            Sua busca não encontrou nenhum resultado.
+        </span>
     {{/if}}
 
     <div class="email-footer">
