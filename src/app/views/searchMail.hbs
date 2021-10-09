@@ -1,19 +1,39 @@
 <style>
+    span, strong {
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
+    .pagination-area {
+        display: flex;
+        flex-direction: column;
+        margin: 25px 0;
+    }
+
+    .products-area {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product {
+        margin-top: 25px;
+    }
+
+    .old-price {
+        text-decoration: line-through;
+    }
+
+    .email-footer {
+        margin-top: 45px;
+    }
 </style>
 
 <div class="container">
-    {{#if totalOfProducts > 0}}
+    {{#if findedProducts}}
     <span>
         Produtos encontrados: {{totalOfProducts}} Resultado da Pesquisa por: <strong>{{search}}</strong> em {{time}} ms
     </span>
-    {{else}}
-    <span>
-        Sua busca não encontrou nenhum resultado.
-    </span>
-    {{/if}}
 
-    <div>
+    <div class="pagination-area">
         <span>Primeiro</span>
         <span>Anterior</span>
         <span>{{pageNumber}}</span>
@@ -23,21 +43,30 @@
 
     <br/>
     
-    <div>
+    <div class="products-area">
         {{#each products}}
-        <div>
-            <span>{{this.productId}}</span>
+        <div class="product">
+            <span>{{productId}}</span>
 
-            {{#each this.category}}
+            {{#each categories}}
                 <span>{{this}}</span>
             {{/each}}
 
-            <h3>{{this.title}}</h3>
+            <br/>
+
+            <a href="{{link}}"><strong>{{productName}}</strong></a>
 
             <div>
-                <span>{{oldPrice}}</span>
-                <span>{{currentPrice}}</span>
-                <span>ou {{installments}}x de {{installmentValue}}</span>
+                {{#if haveDiscount}}
+                <span class="old-price">{{listPrice}}</span>
+                {{/if}}
+
+                <span>{{price}}</span>
+
+                {{#if haveInstallments}}
+                <span>ou {{numberOfInstallments}}x de {{installmentsValue}}</span>
+                {{/if}}
+
                 <span>Comprar</span>
             </div>
         </div>
@@ -46,26 +75,24 @@
 
     <br/>
 
-    <div>
+    <div class="pagination-area">
         <span>Primeiro</span>
         <span>Anterior</span>
         <span>{{pageNumber}}</span>
         <span>Próximo</span>
         <span>Último</span>
     </div>
-    
-    {{#if totalOfProducts > 0}}
-    <span>
-        Produtos encontrados: {{totalOfProducts}} Resultado da Pesquisa por: <strong>{{search}}</strong> em {{time}} ms
-    </span>
     {{else}}
     <span>
         Sua busca não encontrou nenhum resultado.
     </span>
     {{/if}}
 
-    <span>Caso não tenha sido você quem solicitou este email, por favor desconsidere.</span>
-
-    <span>Obrigado!</span>
-    <h3>Equipe | Codeby</h3>
+    <div class="email-footer">
+        <span>Caso não tenha sido você quem solicitou este email, por favor desconsidere.</span>
+        <br/>
+        <span>Obrigado!</span>
+        <br/>
+        <strong>Equipe | Codeby</strong>
+    </div>
 </div>
