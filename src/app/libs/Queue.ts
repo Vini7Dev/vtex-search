@@ -3,8 +3,6 @@ import Queue from 'bull';
 import jobs from '../jobs';
 import redisConfig from '../../config/redis';
 
-import SearchMail from '../jobs/SearchMail';
-
 // Criando a fila de todos os jobs que forem adicionados
 const queues = Object.values(jobs).map(job => ({
     bull: new Queue(job.key, { redis: redisConfig }),

@@ -1,8 +1,5 @@
-import path from 'path';
-
 import api from '../api';
 import Queue from '../libs/Queue';
-import Handlebars from '../libs/Handlebars';
 import getProductData from '../utils/getProductData';
 import ISearchResponseDTO from '../dtos/ISearchResponseDTO';
 
@@ -28,16 +25,13 @@ class SearchService {
         // Recuperando a hora do fim da requisição
         const endRequestTime = (new Date()).getTime();
 
-        // Selecionando os dados da resposta que vão ser utilizados
+        // Selecionando os produtos encontrados
         const productsFinded = searchResult.data.map((product) => product);
 
-        // Gerando a lista dos produtos com os dados compactados
+        // Selecionando os dados dos produtos que vão ser utilizados
         const compactedProductsData = productsFinded.map(product => getProductData(product));
 
-        // Recuperando o arquivo template de email
-        const templateMail = path.resolve(__dirname, '..', 'views', 'searchMail.hbs');
-
-        // Estruturando as variáveis do template
+        // Definindo as variáveis do template
         const variables = {
             totalOfProducts: productsFinded.length,
             findedProducts: productsFinded.length > 0,
@@ -46,20 +40,12 @@ class SearchService {
             pageNumber: 1,
             products: compactedProductsData,
         };
-
-        // Gerando o template do email com base na resposta da requisição
-        const handlebarsMailTemplate = new Handlebars();
-
-        const parsedMailTemplate = await handlebarsMailTemplate.parse({
-            file: templateMail,
-            variables,
-        });
         
         // Adicionando os dados na fila de envio do email
         await Queue.add('SearchMail', {
             name,
             email,
-            html: parsedMailTemplate,
+            variables,
         });
     }
 }

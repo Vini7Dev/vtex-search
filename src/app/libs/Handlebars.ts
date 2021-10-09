@@ -1,12 +1,10 @@
 import fs from 'fs';
 import handlebars from 'handlebars';
 
-// Definindo o tipo das variáveis para o template
 interface ITemplateVariables {
     [key: string]: string | number | boolean | object[];
 }
 
-// Dados para realizar o parse do template
 interface IParseMailRequest {
     file: string;
     variables: ITemplateVariables;
