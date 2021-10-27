@@ -1,7 +1,5 @@
-<img src="assets/banner.jpg" />
-
-# VTEX Search - **Codeby**
-Api de search da VTEX - Teste para vaga Back End NodeJS
+# VTEX Search
+Trabalhando com filas de processamento para envio de email utilizando a API de search da VTEX 
 
 ## Como executar?
 
